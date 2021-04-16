@@ -1,13 +1,13 @@
 #pragma once
 
-// WHY WE DON'T SEPARATE THE INTERFACE FROM IMPLEMENTATION?
 
-
-
-
+// forward declaration
+class MyList;
 
 class MyNode
 {
+	friend class MyList;
+
 public:
 	//	constructor
 	explicit MyNode(int info)
@@ -16,7 +16,11 @@ public:
 	int getData() const{ return data; }
 
 private:
+
+	// data contained by the node
 	int data;
+
+	// ptr to the next node on the list
 	MyNode* nextPtr;
 };
 
