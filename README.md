@@ -4,7 +4,7 @@ A collection of custom Data Structures and Algorithms written in C++
 
 ![](Documentation/Images/Image01.png)
 
-## Linked List
+# Linked List
 
 This is a basic singly linked list with the following functions:
 
