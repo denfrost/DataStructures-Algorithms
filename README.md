@@ -16,7 +16,7 @@ This is a basic singly linked list with the following functions:
 ![](Documentation/Images/LinkedList/LinkedList_InsertAtFront_6.png)
 
 #### Insert At Back
-![](Documentation/Images/LinkedList/LinkedList_InsertAtBack_3.png)
+![](Documentation/Images/LinkedList/LinkedList_InsertAtBack_4.png)
 
 #### Remove From Front
 
