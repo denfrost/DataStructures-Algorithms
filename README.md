@@ -9,6 +9,7 @@ A collection of custom Data Structures and Algorithms written in C++
 This is a basic singly linked list with the following functions:
 
 #### Destructor
+![](Documentation/Images/LinkedList/LinkedList_Destructor.png)
 
 #### Copy-constructor
 
