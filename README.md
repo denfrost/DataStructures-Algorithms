@@ -13,7 +13,7 @@ This is a basic singly linked list with the following functions:
 #### Copy-constructor
 
 #### Insert At Front
-![](Documentation/Images/LinkedList_InsertAtFront.png)
+![](Documentation/Images/LinkedList/LinkedList_InsertAtFront.png)
 
 #### Insert At Back
 
