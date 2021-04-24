@@ -20,6 +20,9 @@ It iterates through the list until all the nodes have been deleted.
 ![](Documentation/Images/LinkedList/LinkedList_Destructor.png)
 
 #### Copy-constructor
+The copy-constructor takes a const reference to the list to copy as a parameter.
+
+It iterates through the list with a currentPtr initialised with the firstPtr of the listToCopy.
 ![](Documentation/Images/LinkedList/LinkedList_copyConstructor.png)
 
 #### Insert At Front
