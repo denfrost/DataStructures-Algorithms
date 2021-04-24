@@ -21,6 +21,7 @@ This is a basic singly linked list with the following functions:
 ![](Documentation/Images/LinkedList/LinkedList_InsertAtBack_4.png)
 
 #### Remove From Front
+![](Documentation/Images/LinkedList/LinkedList_removeFromFront.png)
 
 #### Remove From Back
 
