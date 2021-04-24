@@ -12,6 +12,7 @@ This is a basic singly linked list with the following functions:
 ![](Documentation/Images/LinkedList/LinkedList_Destructor.png)
 
 #### Copy-constructor
+![](Documentation/Images/LinkedList/LinkedList_copyConstructor.png)
 
 #### Insert At Front
 ![](Documentation/Images/LinkedList/LinkedList_InsertAtFront_6.png)
