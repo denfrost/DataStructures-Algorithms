@@ -19,7 +19,7 @@ The destructor attempts to destroy the nodes only if the list is not empty.
 It iterates through the list with a currentPtr initialised with the firstPtr of the list. 
 A tempPtr is also initialised.
 
-Every iteration the memory address hold by currentPtr is assigned to tempPtr, then the currentPtr iterates to the next pointer, and the object the newPtr was aiming at is deleted (the destructor is called and the memory is released).
+Every iteration the memory address hold by currentPtr is assigned to tempPtr (part a), then the currentPtr iterates to the next pointer (part b), and the object the newPtr was aiming at is deleted - the destructor is called and the memory is released - as showed in part (c).
 ```
 tempPtr = currentPtr;
 currentPtr = currentPtr->nextPtr;
@@ -47,7 +47,7 @@ MyNode<NODETYPE>* newPtr{ nullptr };
 
 During every iteration a pointer called tempPtr is initialised with the memory address hold by newPtr (the first iteration it will be nullPtr).
 
-The new operator allocates the memory, call the constructor and return a pointer to the newly created object with the value of the currentPtr. This pointer is assigned to newPtr.
+The new operator allocates the memory, call the constructor and return a pointer to the newly created object with the value of the currentPtr. This pointer is assigned to newPtr. This can be seen in part (a).
 
 ```
 newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() }; 
@@ -55,12 +55,12 @@ newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() };
 
 If the list was empty the value of newPtr is assigned to firstPtr.
 
-Otherwise the memory address hold by newPtr is assigned to the tempPtr's nextPtr.
+Otherwise the memory address hold by newPtr is assigned to the tempPtr's nextPtr as shown is part (b).
 ```
 tempPtr->nextPtr = newPtr;
 ```
 
-Part (b) shows when newPtr (aiming at the last created node) is assigned to the lastPtr once the loop is finished.
+Part (c) shows when newPtr (aiming at the last created node) is assigned to the lastPtr once the loop is finished.
 
 ![](Documentation/Images/LinkedList/LinkedList_copyConstructor.png)
 
