@@ -6,9 +6,14 @@ A collection of custom Data Structures and Algorithms written in C++
 
 # Linked List
 
-This is a basic singly linked list with the following functions:
+This is a basic singly linked list.
+The interface was not separated from the implementation in order to allow the compiler to generate a copy of the class template in which all the occurrences of the type parameter are replaced with the specified type.
+
+The linked list has the following functions:
 
 #### Destructor
+The destructor attempts to destroy the nodes only if the list is not empty.
+It iterates through the list until all the nodes have been deleted.
 ![](Documentation/Images/LinkedList/LinkedList_Destructor.png)
 
 #### Copy-constructor
