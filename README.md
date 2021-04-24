@@ -23,15 +23,22 @@ It iterates through the list until all the nodes have been deleted.
 The copy-constructor takes a const reference to the list to copy as a parameter.
 The copy-constructor attempts to copy the nodes only if the list is not empty.
 
-It iterates through the list with a currentPtr initialised with the firstPtr of the listToCopy. Together with currentPtr a pointer called newPtr is intialised.
+It iterates through the list with a currentPtr initialised with the firstPtr of the listToCopy. 
+Together with currentPtr a pointer called newPtr is intialised.
+
+```
+MyNode<NODETYPE>* CurrentPtr{ listToCopy.firstPtr };
+MyNode<NODETYPE>* newPtr{ nullptr };
+``` 
 
 During every iteration a pointer called tempPtr is initialised with the value of newPtr (the first iteration will be nullPtr).
 
 Then the memory for a new node is allocated and the constructor is called. The pointer returned by the new operator is assigned to newPtr.
 
-```newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() }; ```
+```
+newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() }; 
+```
 
-newPtr is then aimed toward a NodeType allocated
 ![](Documentation/Images/LinkedList/LinkedList_copyConstructor.png)
 
 #### Insert At Front
