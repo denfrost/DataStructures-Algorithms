@@ -16,6 +16,7 @@ The destructor attempts to destroy the nodes only if the list is not empty.
 
 It iterates through the list with a currentPtr initialised with the firstPtr of the list. 
 A tempPtr is also initialised.
+
 Every iteration the memory address hold by currentPtr is assigned to tempPtr, then the currentPtr iterates to the next pointer, and the object aimed at by the newPtr is destroyed (the destructor is called and the memory is released).
 ```
 tempPtr = currentPtr;
