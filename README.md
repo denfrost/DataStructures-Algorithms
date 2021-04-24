@@ -39,6 +39,13 @@ Then the memory for a new node is allocated and the constructor is called. The p
 newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() }; 
 ```
 
+If the list was empty the value of newPtr is assigned to firstPtr.
+
+Otherwise the value of newPtr is assigned to the next node of the tempPtr.
+```
+tempPtr->nextPtr = newPtr;
+```
+
 ![](Documentation/Images/LinkedList/LinkedList_copyConstructor.png)
 
 #### Insert At Front
