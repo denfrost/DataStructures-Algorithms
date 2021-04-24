@@ -4,10 +4,9 @@
 
 /*
 **	Future improvements:
-**	move constructor, memberwise assignment and copy constructor (chapter 10)
-**	split function, reverse function, sort function (?), search function (?)
+**	overloading operator (=, ==)
+**	split function, reverse function
 **	make both list and node a template
-**	doubly-linked list
 */ 
 
 
@@ -15,6 +14,11 @@
 class MyList 
 {
 public:
+
+	// constructor
+	MyList()
+	{
+	}
 
 	// destructor
 	~MyList()
@@ -34,20 +38,52 @@ public:
 		}
 	}
 
+	// copy-constructor
+	// @param listToCopy : list to copy from
+	MyList(const MyList& listToCopy)
+	{
+		if (!listToCopy.isEmpty())
+		{
+			MyNode* CurrentPtr{ listToCopy.firstPtr };
+			MyNode* newPtr{ nullptr };
+
+			while (CurrentPtr != nullptr)
+			{
+				MyNode* tempPtr{ newPtr };
+				newPtr = new MyNode{ CurrentPtr->getData() };
+
+				if (firstPtr == nullptr)
+				{
+					firstPtr = newPtr;
+				}
+				else
+				{
+					tempPtr->nextPtr = newPtr;
+				}
+				CurrentPtr = CurrentPtr->nextPtr;
+			}
+			lastPtr = newPtr;
+		}
+	} 
+
 
 	// insert an element at the front of the list
 	// @param value : element to be inserted
 	void insertAtFront(const int& value)
 	{
+		// allocate the memory for a new node initialised with value
 		MyNode* newPtr = new MyNode{ value };
 
+		// if the list is empty both the firstPtr and the lastPtr will aim at the new created node
 		if (isEmpty())
 		{
 			firstPtr = lastPtr = newPtr;
 		}
-		else // list is not empty
+		else
 		{
+			// assign the nextPtr to the firstPtr of the list
 			newPtr->nextPtr = firstPtr;
+			// now the firstPtr is aiming toward the new node
 			firstPtr = newPtr;
 		}
 	}
@@ -56,29 +92,33 @@ public:
 	// @param value : element to be inserted
 	void insertAtBack(const int& value)
 	{
+		// allocate the memory for a new node initialised with value
 		MyNode* newPtr = new MyNode{value};
 
+		// if the list is empty both the firstPtr and the lastPtr will aim at the new created node
 		if (isEmpty())
 		{
 			firstPtr = lastPtr = newPtr;
 		}
-		else // list is not empty
+		else 
 		{
 			lastPtr->nextPtr = newPtr;
 			lastPtr = newPtr;
 		}
 	}
 
+	// remove an element from the back of the list
 	void removeFromBack()
 	{
 		// if the list is empty the attempt to remove the element from the back fails
 		if (isEmpty())
 		{
-			std::cout << "\nThe element cannot be removed because the list is empty" << std::endl;
+			std::cout << "\n" << "The element cannot be removed because the list is empty" << std::endl;
 			return;
 		}
 		else 
 		{
+			// initialise a pointer aiming toward the lastPtr
 			MyNode* tempPtr{ lastPtr };
 
 			// if the list has only one element we dethread the node, leaving the list empty
@@ -89,6 +129,7 @@ public:
 
 			else 
 			{
+				// iterate through the nodes to find the second-last node
 				MyNode* currentPtr{ firstPtr };
 
 				while (currentPtr->nextPtr != lastPtr)
@@ -96,34 +137,41 @@ public:
 					currentPtr = currentPtr->nextPtr;
 				}
 
+				// once the second-last node was found it, we "cut" the connection
 				currentPtr->nextPtr = nullptr;
+				// now the lastPtr is aiming toward the second-last node
 				lastPtr = currentPtr;
 			}
-		
+			// delete will call the destructor and then de-allocate the memory of the last node
 			delete tempPtr;
 		}
 	}
 
+	// remove an element from the front of the list
 	void removeFromFront()
 	{
+		// if the list is empty the attempt to remove the element from the front fails
 		if (isEmpty())
 		{
-			std::cout << "\nThe element cannot be removed because the list is empty" << std::endl;
+			std::cout << "\n" << "The element cannot be removed because the list is empty" << std::endl;
 			return;
 		}
 		else
 		{
+			// initialise a pointer aiming toward the firstPtr
 			MyNode* tempPtr{ firstPtr };
 
+			// if the list has only one element we dethread the node, leaving the list empty
 			if (firstPtr == lastPtr)
 			{
 				firstPtr = lastPtr = nullptr;
 			}
 			else
 			{
+				// now the firstPtr is aiming toward the second node
 				firstPtr = firstPtr->nextPtr;
 			}
-
+			// delete will call the destructor and then de-allocate the memory of the first node
 			delete tempPtr;
 		}
 
@@ -140,7 +188,7 @@ public:
 	{
 		if (isEmpty())
 		{
-			std::cout << "\nThe list is empty" << std::endl;
+			std::cout << "\n" << "The list is empty" << std::endl;
 			return;
 		}
 
@@ -151,6 +199,20 @@ public:
 			std::cout << "[" << currentPtr->getData() << "]->\t";
 			currentPtr = currentPtr->nextPtr;
 		}
+
+		std::cout << "\n";
+	}
+
+	// get the firstPtr
+	const MyNode* getFirstPtr() const
+	{
+		return firstPtr;
+	}
+
+	// get the lastPtr
+	const MyNode* getLastPtr() const
+	{
+		return lastPtr;
 	}
 
 private:
