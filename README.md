@@ -14,8 +14,14 @@ The linked list has the following functions:
 #### Destructor
 The destructor attempts to destroy the nodes only if the list is not empty.
 
-It iterates through the list until all the nodes have been deleted.
-
+It iterates through the list with a currentPtr initialised with the firstPtr of the list. 
+A tempPtr is also initialised.
+Every iteration the memory address hold by currentPtr is assigned to tempPtr, then the currentPtr iterates to the next pointer, and the object aimed at by the newPtr is destroyed (the destructor is called and the memory is released).
+```
+tempPtr = currentPtr;
+currentPtr = currentPtr->nextPtr;
+delete tempPtr;
+```
 
 ![](Documentation/Images/LinkedList/LinkedList_Destructor.png)
 
@@ -24,16 +30,16 @@ The copy-constructor takes a const reference to the list to copy as a parameter.
 The copy-constructor attempts to copy the nodes only if the list is not empty.
 
 It iterates through the list with a currentPtr initialised with the firstPtr of the listToCopy. 
-Together with currentPtr a pointer called newPtr is intialised.
+A pointer called newPtr is intialised.
 
 ```
 MyNode<NODETYPE>* CurrentPtr{ listToCopy.firstPtr };
 MyNode<NODETYPE>* newPtr{ nullptr };
 ``` 
 
-During every iteration a pointer called tempPtr is initialised with the value of newPtr (the first iteration will be nullPtr).
+During every iteration a pointer called tempPtr is initialised with the memory address hold by newPtr (the first iteration it will be nullPtr).
 
-Then the memory for a new node is allocated and the constructor is called. The pointer returned by the new operator is assigned to newPtr.
+The new operator allocates the memory, call the constructor and return a pointer to the newly created object with the value of the currentPtr. This pointer is assigned to newPtr.
 
 ```
 newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() }; 
@@ -41,10 +47,12 @@ newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() };
 
 If the list was empty the value of newPtr is assigned to firstPtr.
 
-Otherwise the value of newPtr is assigned to the next node of the tempPtr.
+Otherwise the memory address hold by newPtr is assigned to the tempPtr's nextPtr.
 ```
 tempPtr->nextPtr = newPtr;
 ```
+
+When the loop is finished, newPtr (aiming at the last created node) is assigned to the lastPtr.
 
 ![](Documentation/Images/LinkedList/LinkedList_copyConstructor.png)
 
