@@ -24,6 +24,7 @@ This is a basic singly linked list with the following functions:
 ![](Documentation/Images/LinkedList/LinkedList_removeFromFront.png)
 
 #### Remove From Back
+![](Documentation/Images/LinkedList/LinkedList_removeFromBack.png)
 
 #### Is Empty?
 
