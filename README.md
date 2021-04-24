@@ -13,7 +13,10 @@ The linked list has the following functions:
 
 #### Destructor
 The destructor attempts to destroy the nodes only if the list is not empty.
+
 It iterates through the list until all the nodes have been deleted.
+
+
 ![](Documentation/Images/LinkedList/LinkedList_Destructor.png)
 
 #### Copy-constructor
