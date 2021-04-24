@@ -12,12 +12,14 @@ The interface was not separated from the implementation in order to allow the co
 The linked list has the following functions:
 
 #### Destructor
+The destructor call de-allocate the memory of the list's node.
+
 The destructor attempts to destroy the nodes only if the list is not empty.
 
 It iterates through the list with a currentPtr initialised with the firstPtr of the list. 
 A tempPtr is also initialised.
 
-Every iteration the memory address hold by currentPtr is assigned to tempPtr, then the currentPtr iterates to the next pointer, and the object aimed at by the newPtr is destroyed (the destructor is called and the memory is released).
+Every iteration the memory address hold by currentPtr is assigned to tempPtr, then the currentPtr iterates to the next pointer, and the object the newPtr was aiming at is deleted (the destructor is called and the memory is released).
 ```
 tempPtr = currentPtr;
 currentPtr = currentPtr->nextPtr;
@@ -27,6 +29,11 @@ delete tempPtr;
 ![](Documentation/Images/LinkedList/LinkedList_Destructor.png)
 
 #### Copy-constructor
+A copy-construct are invoked whenever a copy of an object is needed such as:
+- intitialising a list object with the same elements of another list object of the same type,
+- passing a list object by value to a function or
+- returning a list object by value from a function
+
 The copy-constructor takes a const reference to the list to copy as a parameter.
 The copy-constructor attempts to copy the nodes only if the list is not empty.
 
