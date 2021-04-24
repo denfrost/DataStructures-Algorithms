@@ -60,7 +60,7 @@ Otherwise the memory address hold by newPtr is assigned to the tempPtr's nextPtr
 tempPtr->nextPtr = newPtr;
 ```
 
-When the loop is finished, newPtr (aiming at the last created node) is assigned to the lastPtr.
+Part (b) shows when newPtr (aiming at the last created node) is assigned to the lastPtr once the loop is finished.
 
 ![](Documentation/Images/LinkedList/LinkedList_copyConstructor.png)
 
