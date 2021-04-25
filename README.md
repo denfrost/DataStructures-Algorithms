@@ -26,7 +26,7 @@ currentPtr = currentPtr->nextPtr;
 delete tempPtr;
 ```
 
-![](Documentation/Images/LinkedList/LinkedList_Destructor.png)
+![](Documentation/Images/LinkedList/LinkedList_Destructor_2.png)
 
 #### Copy-constructor
 A copy-construct are invoked whenever a copy of an object is needed such as:
@@ -89,7 +89,7 @@ Eventually the firstPtr of the list is updated to aim at the newly created node 
 firstPtr = newPtr;
 ```
 
-![](Documentation/Images/LinkedList/LinkedList_InsertAtFront_6.png)
+![](Documentation/Images/LinkedList/LinkedList_InsertAtFront_8.png)
 
 #### Insert At Back
 Insert At Back places a new node at the tail of the list.
@@ -117,17 +117,17 @@ lastPtr = newPtr;
 ```
 
 
-![](Documentation/Images/LinkedList/LinkedList_InsertAtBack_4.png)
+![](Documentation/Images/LinkedList/LinkedList_InsertAtBack_6.png)
 
 #### Remove From Front
 Remove From Front attempts to remove an element from the head of the list.
 
 If the list is empty the attempt to remove the element from the front fails
 
-![](Documentation/Images/LinkedList/LinkedList_removeFromFront.png)
+![](Documentation/Images/LinkedList/LinkedList_removeFromFront_2.png)
 
 #### Remove From Back
-![](Documentation/Images/LinkedList/LinkedList_removeFromBack.png)
+![](Documentation/Images/LinkedList/LinkedList_removeFromBack_2.png)
 
 #### Is Empty?
 
