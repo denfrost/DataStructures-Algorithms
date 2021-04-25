@@ -67,7 +67,7 @@ tempPtr->nextPtr = newPtr;
 
 Part (c) shows when newPtr (aiming at the last created node) is assigned to the lastPtr once the loop is finished.
 
-![](Documentation/Images/LinkedList/LinkedList_copyConstructor_2.png)
+![](Documentation/Images/LinkedList/LinkedList_copyConstructor_3.png)
 
 #### Insert At Front
 Insert At Front places a new node at the head of the list.
