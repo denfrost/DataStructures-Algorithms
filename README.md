@@ -12,18 +12,23 @@ The interface was not separated from the implementation in order to allow the co
 The linked list has the following functions:
 
 #### Destructor
-The destructor call de-allocate the memory of the list's node.
+The destructor de-allocates the memory of the list's nodes.
 
 The destructor attempts to destroy the nodes only if the list is not empty.
 
-It iterates through the list with a currentPtr initialised with the firstPtr of the list. 
-A tempPtr is also initialised.
+It iterates through the list with a currentPtr initialised with the memory address hold by the firstPtr of the list. 
+A tempPtr is also initialised as shown in part (a).
 
-Every iteration the memory address hold by currentPtr is assigned to tempPtr (part a), then the currentPtr iterates to the next pointer (part b), and the object the newPtr was aiming at is deleted - the destructor is called and the memory is released - as showed in part (c).
 ```
-tempPtr = currentPtr;
-currentPtr = currentPtr->nextPtr;
-delete tempPtr;
+MyNode<NODETYPE>* tempPtr{ nullptr };
+MyNode<NODETYPE>* currentPtr{ firstPtr };
+```
+
+Every iteration the memory address hold by currentPtr is assigned to tempPtr, then the currentPtr iterates to the next pointer (part b), and the object the newPtr was aiming at is deleted - the destructor is called and the memory is released - as showed in part (c).
+```
+tempPtr = currentPtr; // part (b)
+currentPtr = currentPtr->nextPtr; // part (b)
+delete tempPtr; // part (c)
 ```
 
 ![](Documentation/Images/LinkedList/LinkedList_Destructor_2.png)
@@ -35,10 +40,10 @@ A copy-construct are invoked whenever a copy of an object is needed such as:
 - returning a list object by value from a function
 
 The copy-constructor takes a const reference to the list to copy as a parameter.
-The copy-constructor attempts to copy the nodes only if the list is not empty.
+The copy-constructor attempts to copy the nodes only if the listToCopy is not empty.
 
-It iterates through the list with a currentPtr initialised with the firstPtr of the listToCopy. 
-A pointer called newPtr is intialised.
+It iterates through the listToCopy with a currentPtr initialised with the memory address hold by the firstPtr of the listToCopy. 
+A pointer called newPtr is also intialised.
 
 ```
 MyNode<NODETYPE>* CurrentPtr{ listToCopy.firstPtr };
@@ -47,13 +52,13 @@ MyNode<NODETYPE>* newPtr{ nullptr };
 
 During every iteration a pointer called tempPtr is initialised with the memory address hold by newPtr (the first iteration it will be nullPtr).
 
-The new operator allocates the memory, call the constructor and return a pointer to the newly created node with the value of the currentPtr. This pointer is assigned to newPtr. This can be seen in part (a).
+The new operator allocates the memory, call the its constructor and return a pointer to the newly created node with the value of the currentPtr. The pointer returned is assigned to newPtr. This can be seen in part (a).
 
 ```
 newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() }; 
 ```
 
-If the list was empty the value of newPtr is assigned to firstPtr.
+If the list was empty the memory address hold by newPtr is assigned to firstPtr.
 
 Otherwise the memory address hold by newPtr is assigned to the tempPtr's nextPtr as shown is part (b).
 ```
