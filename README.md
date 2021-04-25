@@ -79,7 +79,15 @@ If the list is empty both the firstPtr and the lastPtr will aim at the new creat
 
 Otherwise the newly created node's nextPtr will be aimed at the firstPtr of the list. This is shown in part (b).
 
+```
+newPtr->nextPtr = firstPtr;
+```
+
 Eventually the firstPtr of the list is updated to aim at the newly created node as shown in part (c).
+
+```
+firstPtr = newPtr;
+```
 
 ![](Documentation/Images/LinkedList/LinkedList_InsertAtFront_6.png)
 
