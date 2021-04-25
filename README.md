@@ -9,6 +9,10 @@ A collection of custom Data Structures and Algorithms written in C++
 This is a basic singly linked list.
 The list has one pointer to the first node (firstPtr) and one to the last node (lastPtr).
 
+The node class has two private member:
+- data of the type NODETYPE
+- a pointer to the next node called nexPtr
+
 The linked list has the following functions:
 
 #### Destructor
@@ -155,9 +159,24 @@ If the list has only one element, the node is dethread, leaving the list empty.
 ```
 firstPtr = lastPtr = nullptr;
 ```
+Otherwise the function iterates through the list with a pointer called currentPtr initialised with the memory address hold by the firstPtr of the list.
+The iteration continues until the second-last node is found.
+
+```
+while (currentPtr->nextPtr != lastPtr)
+{
+    currentPtr = currentPtr->nextPtr;
+}
+```
+
+Once the second-last element has been found, the currentPtr's nextPtr is assigned to nullPtr as shown in part (b).
+Eventually the lastPtr is aimed at the second-last node as shown in part (c)
 
 ![](Documentation/Images/LinkedList/LinkedList_removeFromBack_2.png)
 
 #### Is Empty?
+Is Empty return true if the list is empty.
 
 #### Print
+The print function iterates through the list with a pointer called currentPtr initialised with the memory address hold by the firstPtr of the list.
+Every iteration it prints the value of the node calling the getData() function. 
