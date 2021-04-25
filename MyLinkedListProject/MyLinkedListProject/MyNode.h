@@ -2,25 +2,26 @@
 
 
 // forward declaration
-class MyList;
+template <typename NODETYPE> class MyList;
 
+template<typename NODETYPE>
 class MyNode
 {
-	friend class MyList;
+	friend class MyList<NODETYPE>;
 
 public:
 	//	constructor
-	explicit MyNode(int info)
+	explicit MyNode(const NODETYPE& info)
 		: data{ info }, nextPtr{ nullptr } {}
 
-	int getData() const{ return data; }
+	NODETYPE getData() const{ return data; }
 
 private:
 
 	// data contained by the node
-	int data;
+	NODETYPE data;
 
 	// ptr to the next node on the list
-	MyNode* nextPtr;
+	MyNode<NODETYPE>* nextPtr;
 };
 

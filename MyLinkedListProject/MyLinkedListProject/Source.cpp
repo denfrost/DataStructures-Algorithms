@@ -1,55 +1,71 @@
 #include "MyList.h"
 #include "MyNode.h"
+#include <string>
 
-void testCopyConstructor(MyList listExample);
+void testCopyConstructor(MyList<int> listExample);
 
 int main()
 {
-	std::cout << "initialising MyList example1..." << std::endl;
-	MyList example1{};
-	std::cout << "example1 address is " << &example1 << std::endl;
+	std::cout << "initialising MyList listObject1..." << std::endl;
+	MyList<int> listObject1{};
+	std::cout << "listObject1 address is " << &listObject1 << std::endl;
 
 	// testing inserting both at front and back 
-	example1.insertAtFront(5);
-	example1.insertAtFront(15);
-	example1.insertAtFront(25);
-	example1.insertAtBack(7);
+	listObject1.insertAtFront(5);
+	listObject1.insertAtFront(15);
+	listObject1.insertAtFront(25);
+	listObject1.insertAtBack(7);
 
-	std::cout << "\n" << "This is example1 after the insertingAtFront 5, 15, 25 and insertingAtBack 7" << std::endl;
-	example1.print();
+	std::cout << "\n" << "This is listObject1 after the insertingAtFront 5, 15, 25 and insertingAtBack 7" << std::endl;
+	listObject1.print();
 
 	// testing removing both at front and back 
-	example1.removeFromBack();
-	example1.removeFromFront();
+	listObject1.removeFromBack();
+	listObject1.removeFromFront();
 
 
-	std::cout << "\n" << "This is example1 after using removeFromBack and RemoveFromFront" << std::endl;
-	example1.print();
+	std::cout << "\n" << "This is listObject1 after using removeFromBack and RemoveFromFront" << std::endl;
+	listObject1.print();
 
 	// initiliase list object using copy-constructor
-	std::cout << "\n\n" << "initialising example2 using copy constructor..." << std::endl;
-	MyList example2{ example1 };
-	std::cout << "example2 address is " << &example2 << std::endl;
-	std::cout << "\n" << "example2 contains these elements: " << std::endl;
-	example2.print();
+	std::cout << "\n\n" << "initialising listObject2 using copy constructor..." << std::endl;
+	MyList<int> listObject2{ listObject1 };
+	std::cout << "listObject2 address is " << &listObject2 << std::endl;
+	std::cout << "\n" << "listObject2 contains these elements: " << std::endl;
+	listObject2.print();
 
-	if (example2.getLastPtr() != nullptr)
+	if (listObject2.getLastPtr() != nullptr)
 	{
-		std::cout << "the value of example2.lastPtr is " << example2.getLastPtr()->getData() << std::endl;
+		std::cout << "the value of listObject2.lastPtr is " << listObject2.getLastPtr()->getData() << std::endl;
 	}
 
 	// test copy-constructor using a test function with pass-by-value
-	testCopyConstructor(example2);
+	testCopyConstructor(listObject2);
+
+
+	// initialise a new list holding strings
+	MyList<std::string> listObject3{};
+
+	std::cout << "\n\n\n" << "testing the linked list with string objects" << std::endl;
+
+	// add two strings to the list
+	listObject3.insertAtFront("not");
+	listObject3.removeFromFront();
+	listObject3.insertAtFront("are");
+	listObject3.insertAtFront("data structures");
+	listObject3.insertAtBack("great");
+
+	listObject3.print();
 
 	std::cout << "\n";
 }
 
-void testCopyConstructor(MyList listExample)
+void testCopyConstructor(MyList<int> listExample)
 {
 	if (listExample.getFirstPtr() != nullptr)
 	{
 		std::cout << "\n";
-		std::cout << "using testCopyConstructor(example2) function " << std::endl;
+		std::cout << "using testCopyConstructor(listObject2) function " << std::endl;
 		std::cout << "The first value of the list passed by value is " << listExample.getFirstPtr()->getData();
 	}
 }

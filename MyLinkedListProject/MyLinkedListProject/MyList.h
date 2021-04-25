@@ -6,19 +6,16 @@
 **	Future improvements:
 **	overloading operator (=, ==)
 **	split function, reverse function
-**	make both list and node a template
 */ 
 
 
-
+template<typename NODETYPE>
 class MyList 
 {
 public:
 
-	// constructor
-	MyList()
-	{
-	}
+	// default-constructor 
+	MyList() {}
 
 	// destructor
 	~MyList()
@@ -26,11 +23,11 @@ public:
 		// attempt to destroy the nodes only if the list is not empty
 		if (!isEmpty())
 		{
-			MyNode* tempPtr{ nullptr };
-			MyNode* currentPtr{ firstPtr };
+			MyNode<NODETYPE>* tempPtr{ nullptr };
+			MyNode<NODETYPE>* currentPtr{ firstPtr };
 
 			while (currentPtr != nullptr)
-			{
+			{ 
 				tempPtr = currentPtr;
 				currentPtr = currentPtr->nextPtr;
 				delete tempPtr;
@@ -40,17 +37,17 @@ public:
 
 	// copy-constructor
 	// @param listToCopy : list to copy from
-	MyList(const MyList& listToCopy)
+	MyList(const MyList<NODETYPE>& listToCopy)
 	{
 		if (!listToCopy.isEmpty())
 		{
-			MyNode* CurrentPtr{ listToCopy.firstPtr };
-			MyNode* newPtr{ nullptr };
+			MyNode<NODETYPE>* CurrentPtr{ listToCopy.firstPtr };
+			MyNode<NODETYPE>* newPtr{ nullptr };
 
 			while (CurrentPtr != nullptr)
 			{
-				MyNode* tempPtr{ newPtr };
-				newPtr = new MyNode{ CurrentPtr->getData() };
+				MyNode<NODETYPE>* tempPtr{ newPtr };
+				newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() };
 
 				if (firstPtr == nullptr)
 				{
@@ -69,10 +66,10 @@ public:
 
 	// insert an element at the front of the list
 	// @param value : element to be inserted
-	void insertAtFront(const int& value)
+	void insertAtFront(const NODETYPE& value)
 	{
 		// allocate the memory for a new node initialised with value
-		MyNode* newPtr = new MyNode{ value };
+		MyNode<NODETYPE>* newPtr = new MyNode<NODETYPE>{ value };
 
 		// if the list is empty both the firstPtr and the lastPtr will aim at the new created node
 		if (isEmpty())
@@ -90,10 +87,10 @@ public:
 
 	// insert an element at the back of the list
 	// @param value : element to be inserted
-	void insertAtBack(const int& value)
+	void insertAtBack(const NODETYPE& value)
 	{
 		// allocate the memory for a new node initialised with value
-		MyNode* newPtr = new MyNode{value};
+		MyNode<NODETYPE>* newPtr = new MyNode<NODETYPE>{value};
 
 		// if the list is empty both the firstPtr and the lastPtr will aim at the new created node
 		if (isEmpty())
@@ -119,7 +116,7 @@ public:
 		else 
 		{
 			// initialise a pointer aiming toward the lastPtr
-			MyNode* tempPtr{ lastPtr };
+			MyNode<NODETYPE>* tempPtr{ lastPtr };
 
 			// if the list has only one element we dethread the node, leaving the list empty
 			if (firstPtr == lastPtr)
@@ -130,14 +127,14 @@ public:
 			else 
 			{
 				// iterate through the nodes to find the second-last node
-				MyNode* currentPtr{ firstPtr };
+				MyNode<NODETYPE>* currentPtr{ firstPtr };
 
 				while (currentPtr->nextPtr != lastPtr)
 				{
 					currentPtr = currentPtr->nextPtr;
 				}
 
-				// once the second-last node was found it, we "cut" the connection
+				// once the second-last node was found it, the connection is "cut"
 				currentPtr->nextPtr = nullptr;
 				// now the lastPtr is aiming toward the second-last node
 				lastPtr = currentPtr;
@@ -159,7 +156,7 @@ public:
 		else
 		{
 			// initialise a pointer aiming toward the firstPtr
-			MyNode* tempPtr{ firstPtr };
+			MyNode<NODETYPE>* tempPtr{ firstPtr };
 
 			// if the list has only one element we dethread the node, leaving the list empty
 			if (firstPtr == lastPtr)
@@ -192,11 +189,18 @@ public:
 			return;
 		}
 
-		MyNode* currentPtr{ firstPtr };
+		MyNode<NODETYPE>* currentPtr{ firstPtr };
 
 		while (currentPtr != nullptr)
 		{
-			std::cout << "[" << currentPtr->getData() << "]->\t";
+			if (currentPtr->nextPtr == nullptr)
+			{
+				std::cout << "[" << currentPtr->getData() << "]";
+			}
+			else
+			{
+				std::cout << "[" << currentPtr->getData() << "]->";
+			}
 			currentPtr = currentPtr->nextPtr;
 		}
 
@@ -204,21 +208,21 @@ public:
 	}
 
 	// get the firstPtr
-	const MyNode* getFirstPtr() const
+	const MyNode<NODETYPE>* getFirstPtr() const
 	{
 		return firstPtr;
 	}
 
 	// get the lastPtr
-	const MyNode* getLastPtr() const
+	const MyNode<NODETYPE>* getLastPtr() const
 	{
 		return lastPtr;
 	}
 
 private:
 	// ptr to the first element on the list
-	MyNode* firstPtr{ nullptr };
+	MyNode<NODETYPE>* firstPtr{ nullptr };
 
 	// ptr to the last element on the list
-	MyNode* lastPtr{ nullptr };
+	MyNode<NODETYPE>* lastPtr{ nullptr };
 };
