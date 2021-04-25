@@ -7,7 +7,7 @@ A collection of custom Data Structures and Algorithms written in C++
 # Linked List
 
 This is a basic singly linked list.
-The interface was not separated from the implementation in order to allow the compiler to generate a copy of the class template in which all the occurrences of the type parameter are replaced with the specified type.
+The list has one pointer to the first node (firstPtr) and one to the last node (lastPtr).
 
 The linked list has the following functions:
 
@@ -16,8 +16,8 @@ The destructor de-allocates the memory of the list's nodes.
 
 The destructor attempts to destroy the nodes only if the list is not empty.
 
-It iterates through the list with a currentPtr initialised with the memory address hold by the firstPtr of the list. 
-A tempPtr is also initialised as shown in part (a).
+It iterates through the list with a pointer called currentPtr initialised with the memory address hold by the firstPtr of the list. 
+A pointer called tempPtr is also initialised as shown in part (a).
 
 ```
 MyNode<NODETYPE>* tempPtr{ nullptr };
@@ -42,7 +42,7 @@ A copy-construct are invoked whenever a copy of an object is needed such as:
 The copy-constructor takes a const reference to the list to copy as a parameter.
 The copy-constructor attempts to copy the nodes only if the listToCopy is not empty.
 
-It iterates through the listToCopy with a currentPtr initialised with the memory address hold by the firstPtr of the listToCopy. 
+It iterates through the listToCopy with a pointer called currentPtr initialised with the memory address hold by the firstPtr of the listToCopy. 
 A pointer called newPtr is also intialised.
 
 ```
@@ -58,14 +58,14 @@ The new operator allocates the memory, call the its constructor and return a poi
 newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() }; 
 ```
 
-If the list was empty the memory address hold by newPtr is assigned to firstPtr.
+If the list is empty the memory address hold by newPtr is assigned to firstPtr.
 
 Otherwise the memory address hold by newPtr is assigned to the tempPtr's nextPtr as shown is part (b).
 ```
 tempPtr->nextPtr = newPtr;
 ```
 
-Part (c) shows when newPtr (aiming at the last created node) is assigned to the lastPtr once the loop is finished.
+Part (c) shows when the memory address hold by newPtr (aiming at the last created node) is assigned to the lastPtr once the loop is finished.
 
 ![](Documentation/Images/LinkedList/LinkedList_copyConstructor_3.png)
 
@@ -74,13 +74,13 @@ Insert At Front places a new node at the head of the list.
 
 Insert At Front takes a const reference to the value to be inserted onto the list.
 
-The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by this pointer is assigned to newPtr as shown in part (a).
+The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by the returned pointer is assigned to a pointer called newPtr as shown in part (a).
 
 ```
 MyNode<NODETYPE>* newPtr = new MyNode<NODETYPE>{ value };
 ```
 
-If the list is empty both the firstPtr and the lastPtr will aim at the new created node
+If the list is empty both the firstPtr and the lastPtr will aim at the newly created node.
 
 Otherwise the newly created node's nextPtr will be aimed at the firstPtr of the list. This is shown in part (b).
 
@@ -101,15 +101,15 @@ Insert At Back places a new node at the tail of the list.
 
 Insert At Back takes a const reference to the value to be inserted onto the list.
 
-The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by this pointer is assigned to newPtr as shown in part (a).
+The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by the returned pointer is assigned to a pointer called newPtr as shown in part (a).
 
 ```
 MyNode<NODETYPE>* newPtr = new MyNode<NODETYPE>{ value };
 ```
 
-If the list is empty both the firstPtr and the lastPtr will aim at the new created node.
+If the list is empty both the firstPtr and the lastPtr will aim at the newly created node.
 
-Otherwise the lastPtr's nextPtr will be aimed at the newly created pointer as shown in part (b).
+Otherwise the lastPtr's nextPtr will be aimed at the newly created node as shown in part (b).
 
 ```
 lastPtr->nextPtr = newPtr;
@@ -127,11 +127,35 @@ lastPtr = newPtr;
 #### Remove From Front
 Remove From Front attempts to remove an element from the head of the list.
 
-If the list is empty the attempt to remove the element from the front fails
+If the list is empty the attempt to remove the element from the front fails.
+
+A pointer called tempPtr is initialised with the memory address of the firtPtr as shown in part (a).
+
+If the list has only one element, the node is dethread, leaving the list empty
+
+```
+firstPtr = lastPtr = nullptr;
+```
+
+Otherwise the firstPtr is aimed at the second element of the list as shown in part (b).
+
+Eventually the node aimed by tempPtr is deleted - the destructor is called and the memory is released - as shown in part (c).
 
 ![](Documentation/Images/LinkedList/LinkedList_removeFromFront_2.png)
 
 #### Remove From Back
+Remove From Back attempts to remove an element from the tail of the list.
+
+If the list is empty the attempt to remove the element from the back fails.
+
+A pointer called tempPtr is initialised with the memory address of the lastPtr as shown in part (a).
+
+If the list has only one element, the node is dethread, leaving the list empty. 
+
+```
+firstPtr = lastPtr = nullptr;
+```
+
 ![](Documentation/Images/LinkedList/LinkedList_removeFromBack_2.png)
 
 #### Is Empty?
