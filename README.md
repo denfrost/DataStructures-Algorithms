@@ -47,7 +47,7 @@ MyNode<NODETYPE>* newPtr{ nullptr };
 
 During every iteration a pointer called tempPtr is initialised with the memory address hold by newPtr (the first iteration it will be nullPtr).
 
-The new operator allocates the memory, call the constructor and return a pointer to the newly created object with the value of the currentPtr. This pointer is assigned to newPtr. This can be seen in part (a).
+The new operator allocates the memory, call the constructor and return a pointer to the newly created node with the value of the currentPtr. This pointer is assigned to newPtr. This can be seen in part (a).
 
 ```
 newPtr = new MyNode<NODETYPE>{ CurrentPtr->getData() }; 
@@ -69,7 +69,7 @@ Insert At Front places a new node at the head of the list.
 
 Insert At Front takes a const reference to the value to be inserted onto the list.
 
-The new operator allocates the memory, call the constructor and return a pointer to the newly created object with the value passed to the function by reference. This pointer is assigned to newPtr. 
+The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by this pointer is assigned to newPtr. 
 
 ```
 MyNode<NODETYPE>* newPtr = new MyNode<NODETYPE>{ value };
@@ -92,6 +92,31 @@ firstPtr = newPtr;
 ![](Documentation/Images/LinkedList/LinkedList_InsertAtFront_6.png)
 
 #### Insert At Back
+Insert At Back places a new node at the tail of the list.
+
+Insert At Back takes a const reference to the value to be inserted onto the list.
+
+The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by this pointer is assigned to newPtr.
+
+```
+MyNode<NODETYPE>* newPtr = new MyNode<NODETYPE>{ value };
+```
+
+If the list is empty both the firstPtr and the lastPtr will aim at the new created node.
+
+Otherwise the lastPtr's nextPtr will be aimed at the newly created pointer as shown in part (b).
+
+```
+lastPtr->nextPtr = newPtr;
+```
+
+Eventually the lastPtr of the list is updated to aim at the newly created node as shown in part (c).
+
+```
+lastPtr = newPtr;
+```
+
+
 ![](Documentation/Images/LinkedList/LinkedList_InsertAtBack_4.png)
 
 #### Remove From Front
