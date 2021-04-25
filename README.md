@@ -180,3 +180,9 @@ Is Empty return true if the list is empty.
 #### Print
 The print function iterates through the list with a pointer called currentPtr initialised with the memory address hold by the firstPtr of the list.
 Every iteration it prints the value of the node calling the getData() function. 
+
+## How to contact me
+For any feedback please send me an email: 
+luigiplatania94@gmail.com
+
+My website: https://www.luigiplatania.net/
