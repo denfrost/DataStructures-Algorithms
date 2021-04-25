@@ -67,6 +67,19 @@ Part (c) shows when newPtr (aiming at the last created node) is assigned to the 
 #### Insert At Front
 Insert At Front places a new node at the head of the list.
 
+Insert At Front takes a const reference to the value to be inserted onto the list.
+
+The new operator allocates the memory, call the constructor and return a pointer to the newly created object with the value passed to the function by reference. This pointer is assigned to newPtr. 
+
+```
+MyNode<NODETYPE>* newPtr = new MyNode<NODETYPE>{ value };
+```
+
+If the list is empty both the firstPtr and the lastPtr will aim at the new created node
+
+Otherwise the newly created node's nextPtr will be aimed at the firstPtr of the list. This is shown in part (b).
+
+Eventually the firstPtr of the list is updated to aim at the newly created node as shown in part (c).
 
 ![](Documentation/Images/LinkedList/LinkedList_InsertAtFront_6.png)
 
