@@ -69,7 +69,7 @@ Insert At Front places a new node at the head of the list.
 
 Insert At Front takes a const reference to the value to be inserted onto the list.
 
-The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by this pointer is assigned to newPtr. 
+The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by this pointer is assigned to newPtr as shown in part (a).
 
 ```
 MyNode<NODETYPE>* newPtr = new MyNode<NODETYPE>{ value };
@@ -96,7 +96,7 @@ Insert At Back places a new node at the tail of the list.
 
 Insert At Back takes a const reference to the value to be inserted onto the list.
 
-The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by this pointer is assigned to newPtr.
+The new operator allocates the memory, call the constructor and return a pointer to the newly created node. The value passed by reference to the function will be assigned as the node's data. The memory address hold by this pointer is assigned to newPtr as shown in part (a).
 
 ```
 MyNode<NODETYPE>* newPtr = new MyNode<NODETYPE>{ value };
@@ -120,6 +120,10 @@ lastPtr = newPtr;
 ![](Documentation/Images/LinkedList/LinkedList_InsertAtBack_4.png)
 
 #### Remove From Front
+Remove From Front attempts to remove an element from the head of the list.
+
+If the list is empty the attempt to remove the element from the front fails
+
 ![](Documentation/Images/LinkedList/LinkedList_removeFromFront.png)
 
 #### Remove From Back
