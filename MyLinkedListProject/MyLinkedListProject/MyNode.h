@@ -1,5 +1,18 @@
-#pragma once
+/*=============================================================================
+	MyNode.h
 
+	Doc:
+	https://github.com/luigiplatania94/DataStructures-Algorithms
+
+	Luigi Platania
+	https://www.luigiplatania.net/
+
+	Email:
+	luigiplatania94@gmail.com
+=============================================================================*/
+
+
+#pragma once
 
 // forward declaration
 template <typename NODETYPE> class MyList;

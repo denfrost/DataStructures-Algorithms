@@ -1,13 +1,25 @@
+
+/*=============================================================================
+	MyList.h
+
+	Doc:
+	https://github.com/luigiplatania94/DataStructures-Algorithms
+
+	Luigi Platania
+	https://www.luigiplatania.net/
+
+	Email:
+	luigiplatania94@gmail.com
+=============================================================================*/
+
+/*
+	Future improvements:
+	overloading operator (=, ==)
+*/ 
+
 #pragma once
 #include "MyNode.h"
 #include <iostream>
-
-/*
-**	Future improvements:
-**	overloading operator (=, ==)
-**	split function, reverse function
-*/ 
-
 
 template<typename NODETYPE>
 class MyList 
@@ -31,6 +43,7 @@ public:
 				tempPtr = currentPtr;
 				currentPtr = currentPtr->nextPtr;
 				delete tempPtr;
+				tempPtr = nullptr;
 			}
 		}
 	}
@@ -141,6 +154,7 @@ public:
 			}
 			// delete will call the destructor and then de-allocate the memory of the last node
 			delete tempPtr;
+			tempPtr = nullptr;
 		}
 	}
 
@@ -170,6 +184,7 @@ public:
 			}
 			// delete will call the destructor and then de-allocate the memory of the first node
 			delete tempPtr;
+			tempPtr = nullptr;
 		}
 
 	}
