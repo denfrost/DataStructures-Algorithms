@@ -28,7 +28,7 @@ MyNode<NODETYPE>* tempPtr{ nullptr };
 MyNode<NODETYPE>* currentPtr{ firstPtr };
 ```
 
-Every iteration the memory address hold by currentPtr is assigned to tempPtr, then the currentPtr iterates to the next pointer (part b), and the object the newPtr was aiming at is deleted - the destructor is called and the memory is released - as showed in part (c).
+Every iteration the memory address hold by currentPtr is assigned to tempPtr, then the currentPtr iterates to the next pointer (part b), and the object the tempPtr was aiming at is deleted - the destructor is called and the memory is released - as showed in part (c).
 ```
 tempPtr = currentPtr; // part (b)
 currentPtr = currentPtr->nextPtr; // part (b)
